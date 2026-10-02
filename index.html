@@ -253,6 +253,84 @@ footer.foot b{color:var(--gold-deep)}
   .rv{opacity:1;transform:none}
   header.hero{background:var(--navy);-webkit-print-color-adjust:exact}
 }
+
+/* ============ v8.1 增补 ============ */
+/* D2 侧栏板块折叠 */
+.navgrp{margin-bottom:2px}
+.navgrp>.grp{cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;padding-right:4px}
+.navgrp>.grp::after{content:"▾";font-size:9px;color:#5e667c;transition:transform .25s var(--ease)}
+.navgrp.closed>.grp::after{transform:rotate(-90deg)}
+.navgrp.closed>a{display:none}
+/* D3 表格首列吸附（separate 才能让 sticky 生效） */
+.tw table{border-collapse:separate;border-spacing:0}
+.tw td:first-child,.tw th:first-child{position:sticky;left:0;z-index:1}
+.tw th:first-child{background:#f1eee5}
+.tw td:first-child{background:#fff;box-shadow:inset -1px 0 0 #efeadf}
+.tw tr:hover td:first-child{background:#faf8f1}
+/* D4 节标题复制链接 */
+h3.sec{padding-right:44px}
+.cpy{position:absolute;right:0;top:-3px;width:30px;height:30px;border:1px solid var(--line-2);
+  border-radius:8px;background:#fff;color:var(--muted);cursor:pointer;font-size:13px;opacity:0;
+  transition:opacity .25s,color .2s,border-color .2s;display:inline-flex;align-items:center;justify-content:center}
+h3.sec:hover .cpy,.cpy:focus-visible{opacity:1}
+.cpy:hover{color:var(--gold-deep);border-color:var(--gold)}
+#toast{position:fixed;bottom:34px;left:50%;transform:translate(-50%,14px);background:var(--ink-strong);
+  color:#f2efe4;font-size:13px;padding:9px 18px;border-radius:999px;opacity:0;pointer-events:none;
+  transition:.3s var(--ease);z-index:98;letter-spacing:.5px}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+/* D5 搜索结果计数 */
+#searchResults .rc{font-size:11px;color:var(--muted);padding:8px 16px 2px;letter-spacing:1px}
+/* D1 移动端抽屉导航 */
+#topbar{display:none;position:fixed;top:0;left:0;right:0;height:50px;z-index:96;background:var(--navy);
+  color:#f0eee4;align-items:center;gap:11px;padding:0 13px;border-bottom:1px solid #1e2639}
+#topbar .burger{width:38px;height:38px;border:none;border-radius:8px;background:transparent;color:inherit;
+  font-size:19px;cursor:pointer;transition:background .2s}
+#topbar .burger:hover{background:var(--navy-2)}
+#topbar .tt{font-size:13.5px;font-weight:700;letter-spacing:1px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#topbar .vv{font-size:10.5px;color:#7e8598;white-space:nowrap}
+#backdrop{position:fixed;inset:0;background:rgba(8,12,22,.55);opacity:0;pointer-events:none;transition:opacity .3s;z-index:94}
+#backdrop.show{opacity:1;pointer-events:auto}
+@media (max-width:960px){
+  #topbar{display:flex}
+  aside{position:fixed;top:0;left:0;bottom:0;width:min(320px,85vw);height:auto;
+    transform:translateX(-103%);transition:transform .4s var(--ease);z-index:95;
+    box-shadow:0 0 60px rgba(0,0,0,.5)}
+  aside.open{transform:none}
+  main{margin-top:50px}
+  #searchBox{top:58px}
+}
+/* C1/C2 计算器 */
+.calc{background:#fffdf6;border:1px solid #eadfb8;border-radius:var(--r-lg);padding:18px 22px;
+  margin:18px 0;box-shadow:var(--shadow-1)}
+.calc .ct{font-weight:700;color:var(--gold-deep);font-size:14.5px;display:block;margin-bottom:12px;letter-spacing:.5px}
+.calc .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:7px 14px}
+.calc label{display:flex;align-items:center;gap:7px;font-size:13px;color:#3c4356;cursor:pointer;user-select:none}
+.calc input[type=checkbox]{accent-color:var(--gold);width:15px;height:15px;flex:none}
+.calc input[type=number],.calc select{width:76px;padding:4px 8px;border:1px solid var(--line-2);
+  border-radius:8px;font:inherit;font-size:13px;background:#fff;color:var(--ink)}
+.calc input[type=number]:focus,.calc select:focus{outline:none;border-color:var(--gold)}
+.calc .row{display:flex;align-items:center;gap:8px;font-size:13px;color:#3c4356;margin:7px 0;flex-wrap:wrap}
+.calc .out{margin-top:14px;padding:13px 16px;background:var(--navy);color:#f0eee4;border-radius:var(--r-md);
+  display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline;font-family:var(--mono)}
+.calc .out b{font-size:24px;color:var(--gold-bright);font-weight:600;line-height:1.1}
+.calc .out .lb{font-size:11.5px;color:#8b92a6;font-family:var(--sans);display:block;margin-top:2px}
+.calc .out .st{font-size:12.5px;font-family:var(--sans);width:100%}
+.calc .out .good{color:#8fe0ae}.calc .out .bad{color:#ffa488}
+.calc .hint{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.75}
+.calc .gr{display:grid;grid-template-columns:1fr 78px 78px;gap:6px 12px;align-items:center;
+  font-size:13px;color:#3c4356;margin:3px 0}
+.calc .gr input{width:100%;padding:5px 9px;border:1px solid var(--line-2);border-radius:8px;
+  font:inherit;font-size:13px;background:#fff;color:var(--ink)}
+.calc .gr input:focus{outline:none;border-color:var(--gold)}
+.calc .gr .hd{font-size:11.5px;color:var(--muted);letter-spacing:1px;font-weight:700}
+.calc .btn{border:1px solid var(--line-2);background:#fff;border-radius:8px;padding:5px 14px;
+  font:inherit;font-size:12.5px;color:#3c4356;cursor:pointer;transition:.2s}
+.calc .btn:hover{border-color:var(--gold);color:var(--gold-deep)}
+/* C4 位次线登记表 */
+.ranktbl td[contenteditable]{min-width:110px;background:#fffdf6;cursor:text;transition:background .2s}
+.ranktbl td[contenteditable]:focus{outline:2px solid var(--gold);outline-offset:-2px;background:#fff}
+.ranktbl td[contenteditable]:empty::before{content:"待填";color:#c4bda9;font-size:12px}
+@media print{#topbar,#backdrop{display:none}.calc .out{background:#fff;color:var(--ink)}}
 </style>
 </head>
 <body>
@@ -341,7 +419,7 @@ footer.foot b{color:var(--gold-deep)}
     <details class="log">
       <summary>🔄 v7 更新记录（2026-10-01 · 依据 2026 级官方培养计划系列 6 份文件逐条核对）</summary>
       <p class="muted">➕ <b>新增</b>：①大一上必修课「人工智能通识导论A」1.0·考查（2026 新设"数智基础类"，理工农医类必修）；②格致创新班官方出处：2026 培养计划下册 p398（智能科技学院·人工智能格致创新班 3201）。<br>
-      🔄 <b>修改</b>：①分流候选专业 15 → 13（2026 级起医学影像技术、智能医学工程划入智能化制造类），13 个专业页码全部换 2026 版；②程序设计及实践(C) 3.0 → (C)A 2.0（一/1–一/2）；③程序设计课程设计(C) 从"短1 集中 2 周"改到一/2 学期内（64 实验学时）；④军训官方定档：1.0 学分、排大一短1（2026 通识-军体类表）；⑤基础学院 2026-03 并入基础学部（basis 域名已注销），相关链接改指理学院官网；⑥"毕业 160 学分"升格为官方确认（上册电信类专业 160 / 医学信息工程 156）；⑦电信类大类阶段总学分 28.5 → 26.5；⑧二次检验时发现《学生手册（2026）》已发布（2026-09-09），逐条核对：1.80 学位线、25/60/100 警示线、90/10 分流公式、补考记 60 分、绩点表全部未变——来源与页码引用已切换到 2026 版（320 页）；2025 版学生手册/培养计划按要求移出资料来源表（本地仍有存档）。<br>
+      🔄 <b>修改</b>：①分流候选专业 15 → 13（2026 级起医学影像技术、智能医学工程划入智能化制造类），13 个专业页码全部换 2026 版；②程序设计及实践(C) 3.0 → (C)A 2.0（一/1–一/2）；③程序设计课程设计(C) 从"短1 集中 2 周"改到一/2 学期内（64 实验学时）；④军训官方定档：1.0 学分、排大一短1（2026 通识-军体类表）；⑤基础学院 2026-03 并入基础学部（basis 域名已注销），相关链接改指理学院官网；⑥"毕业 160 学分"升格为官方确认（上册电信类专业 160 / 医学信息工程 156）；⑦电信类大类阶段总学分 28.5 → 26.5；⑧二次检验时发现《学生手册（2026）》已发布（2026-09-09），逐条核对：1.80 学位线、25/60/100 警示线、90/10 分流公式、补考记 60 分、绩点表全部未变——来源与页码引用已切换到 2026 版（320 页）；2025 版学生手册/培养计划按要求移出资料来源表（本地仍有存档）。<br>🛠 <b>v8.1 工具批（2026-10-01）</b>：手机端导航抽屉、侧栏板块折叠、宽表首列吸附、节标题复制链接、拼音首字母搜索（输 dlfl 直达大类分流）、综测计算器、GPA/加权双算器、往年分流位次线登记表（仅存本机浏览器，不上传）。<br>
       ❌ <b>删除</b>：①大一课程表中的「工程制图(1)」2.0（2026 电信类大类基础理论课已不再开设）。</p>
     </details>
   </div>
@@ -506,6 +584,26 @@ footer.foot b{color:var(--gold-deep)}
     <p><strong>GPA = 47.0 ÷ 14 = 3.36</strong>。"乘学分"是灵魂：学分就是话语权——体育满分轻轻推一把，高数翻车直接拽下水。</p>
   </section>
 
+  
+  <div class="calc" id="gpaCalc">
+    <span class="ct">🧮 GPA / 加权成绩 双算器（同一组成绩，两条赛道）</span>
+    <div class="gr" style="margin-bottom:8px">
+      <span class="hd">课程（可改）</span><span class="hd">学分</span><span class="hd">分数</span>
+    </div>
+    <div class="gr"><input value="高等数学"><input type="number" value="6" min="0" step="0.5"><input type="number" value="92" min="0" max="100"></div>
+    <div class="gr"><input value="大学英语"><input type="number" value="3" min="0" step="0.5"><input type="number" value="84" min="0" max="100"></div>
+    <div class="gr"><input value="大学物理"><input type="number" value="4" min="0" step="0.5"><input type="number" value="78" min="0" max="100"></div>
+    <div class="gr"><input value="电路原理"><input type="number" value="4" min="0" step="0.5"><input type="number" value="85" min="0" max="100"></div>
+    <div class="gr"><input value="体育"><input type="number" value="1" min="0" step="0.5"><input type="number" value="90" min="0" max="100"></div>
+    <div class="gr"><input value="" placeholder="再加一门"><input type="number" value="" min="0" step="0.5" placeholder="学分"><input type="number" value="" min="0" max="100" placeholder="分数"></div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" id="gpaReset">恢复示例</button>
+      <span class="hint" style="margin:0">随便填，右边实时出两个结果</span>
+    </div>
+    <div class="out" id="gpaOut"></div>
+    <p class="hint">左边按学籍办法第二十条换绩点再平均（GPA，学位线看它）；右边原始分直接平均（加权成绩，分流 90% 看它）。填同一组分，差距一眼看穿。</p>
+  </div>
+
   <section id="sec6">
     <h3 class="sec">6. 学分加权成绩 = 分流的真主角 🎯</h3>
     <p><strong>学分加权成绩 = Σ（每门课原始分数 × 学分）÷ Σ（总学分）</strong>——公式和 GPA 一模一样，但乘的是<b>原始分</b>，不换绩点。</p>
@@ -585,7 +683,38 @@ footer.foot b{color:var(--gold-deep)}
       <tr><td>学院学生社会工作</td><td>班委、学生会等，按实际给分</td><td>1–5</td></tr>
       <tr><td>征兵模块</td><td>报名并体检 +3 ｜ 正式入伍 +40（两项不累计）</td><td>≤40</td></tr>
     </table></div>
-    <p><strong>时间线</strong>：每学期<b>第 14 周启动、16 周前公示 5 天</b>，异议找辅导员，过期不候。</p>
+    
+  <div class="calc" id="zcCalc">
+    <span class="ct">🧮 综测计算器（大一上 · 点一点自动算）</span>
+    <div class="grid" id="zcA">
+      <label><input type="checkbox" data-v="20">晚自习 20</label>
+      <label><input type="checkbox" data-v="10">新生入学认知教育 10</label>
+      <label><input type="checkbox" data-v="5">新生职业生涯测试 5</label>
+      <label><input type="checkbox" data-v="5">心理健康测试 5</label>
+      <label><input type="checkbox" data-v="5">主题班团课 5</label>
+      <label><input type="checkbox" data-v="5">"班班有歌声"合唱 5</label>
+      <label><input type="checkbox" data-v="3">安全教育系列活动 3</label>
+      <label><input type="checkbox" data-v="3">寝室安全卫生无黑牌 3</label>
+      <label><input type="checkbox" data-v="2">运动知识答题 2</label>
+      <label><input type="checkbox" data-v="1">易班注册 1</label>
+      <label><input type="checkbox" data-v="1">到梦空间注册 1</label>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <b style="font-size:12.5px;color:#232a3d">口袋B：</b>
+      <label style="gap:4px">发展活动 <input type="number" id="zcB1" min="0" max="50" value="0"></label>
+      <label style="gap:4px">卓越成果 <input type="number" id="zcB2" min="0" max="50" value="0"></label>
+      <label style="gap:4px">征兵
+        <select id="zcB3"><option value="0">无</option><option value="3">报名并体检 +3</option><option value="40">正式入伍 +40</option></select>
+      </label>
+      <label style="gap:4px">违纪
+        <select id="zcCF"><option value="0">无</option><option value="10">警告 -10</option><option value="20">严重警告 -20</option><option value="30">记过 -30</option><option value="40">留校察看 -40</option></select>
+      </label>
+    </div>
+    <div class="out" id="zcOut"></div>
+    <p class="hint">口径：核心模块 0~60 须 ≥50（B 口袋补不上）；额外 = 发展 + 卓越 + 征兵，合计 ≤50；总分封顶 100。分值依《基础学院学生综合表现评定办法》（基础〔2025〕2号，手册第 9 节），每学期以学院公示细则为准。</p>
+  </div>
+
+  <p><strong>时间线</strong>：每学期<b>第 14 周启动、16 周前公示 5 天</b>，异议找辅导员，过期不候。</p>
     <div class="card"><span class="t">💡 提示卡｜综测</span>
       <p><b class="k">🎯 能干什么</b>：①大类分流综合成绩的 <b>10%</b>；②奖学金评定的<b>德育资格线</b>（不达标，加权再高也取消资格）；③评优依据。它是<b>防守型分数</b>：守住白送分，守不住会咬人（晚自习翘一学期 = 综合成绩白丢 2 分）。</p>
       <p><b class="k">🎁 怎么得到</b>：核心模块靠<b>考勤自动到账</b>；发展模块参加学院活动（老师报名单）；卓越模块<b>自己交材料申请</b>（限参评学年内、上理本科生身份，同一成果只用一次）；违纪自动扣。</p>
@@ -626,7 +755,23 @@ footer.foot b{color:var(--gold-deep)}
       <p><b class="k">🎁 怎么得到</b>：不用得到，是你要"打赢"的排位赛。90% 看大一加权成绩，10% 看综测。</p>
       <p><b class="k">📈 怎么提高</b>：①大一一切为加权成绩让路（尤其 6 学分的高数）；②综测守住考勤底线；③寒假摸清 13 个专业出路，填志愿前找直系学长要<b>往年各专业实际分流位次线</b>——比任何官方文件都真实。</p>
     </div>
-  </section>
+  
+  <div class="calc" id="fsxStore">
+    <span class="ct">📒 往年分流位次线登记表（向学长要来填，只存在你自己的浏览器）</span>
+    <div class="tw ranktbl"><table>
+      <tr><th>学年</th><th>专业</th><th>实际分流线（综合成绩 / 名次）</th><th>信息来源</th></tr>
+      <tr><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+    </table></div>
+    <div class="row"><button class="btn" id="fsxAdd">加一行</button><button class="btn" id="fsxClear">清空</button>
+      <span class="hint" style="margin:0">自动保存，换设备不带走（浏览器本地存储）</span></div>
+  </div>
+
+</section>
 
   <section id="sec12">
     <h3 class="sec">12. 转专业 = 另一扇门</h3>
@@ -978,7 +1123,7 @@ footer.foot b{color:var(--gold-deep)}
   });
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{rootMargin:'0px 0px -6% 0px',threshold:.04});
+  },{rootMargin:'0px 0px -4% 0px',threshold:0});
   targets.forEach(function(el){io.observe(el)});
   function revealNow(root){
     if(!root) return;
@@ -1022,7 +1167,7 @@ footer.foot b{color:var(--gold-deep)}
     es.forEach(e=>{
       if(e.isIntersecting){
         links.forEach(l=>l.classList.remove('on'));
-        const l=map.get(e.target.id); if(l) l.classList.add('on');
+        const l=map.get(e.target.id); if(l){ l.classList.add('on'); var g=l.closest('.navgrp'); if(g) g.classList.remove('closed'); }
       }
     });
   },{rootMargin:'-20% 0px -70% 0px'});
@@ -1034,6 +1179,7 @@ footer.foot b{color:var(--gold-deep)}
   <div id="searchResults"></div>
   <div id="searchHint">Esc 关闭 · ↑↓ 选择 · 回车跳转</div>
 </div>
+<script>window._PY={"sec-toc": "wzzbccrccxrk wz lb", "sec-map": "mchljjbxtqsfct mcmc jb", "sec1": "xfyxb xf", "sec2": "gkbjlcbszhybs gkbc hk", "sec3": "kshx kshx hx", "sec4": "sctwfsjd fsjd jd", "sec5": "zmssb gpa js", "sec6": "xfjqcjfldzzj xfjqcjd jq", "sec7": "yzbfqlxd lxd db", "sec8": "zcyjhjg zcjg zc", "sec9": "jcxyxzgnhdzd jcyj zc", "sec10": "zhcjwflxzdycxcj zhcj", "sec11": "dlflndtdds dlfl fz", "sec12": "zzylysm zzy", "sec13": "byzxwz byz xwz xw", "sec14": "jxjqjfmxqpmeazywdw jxj qian", "sec15": "knrdyqgzx knrd qgzx", "sec16": "jsydcdzxxldk js dc dachuang", "sec17": "st sth", "sec18": "xsgz xsgz bw", "sec19": "bytmzsjb by tmj", "sec20": "rdty rd dang", "sec21": "ttyydrk wk rk sl", "sec22": "nyssq ssq", "sec23": "rxzbqdkxqcghd rxzb zb qd", "sec24": "dyxqsjz dysx sjj sj", "sec25": "dexqysjsjz dyx sjj", "sec26": "dygjdzzclhbzdygjdzzsc gjd zz", "sec-act": "zjxdqd zhxd qd", "sec-src": "ssly shilaiyuan ly"};</script>
 <script>
 (function(){
   var box=document.getElementById('searchBox');
@@ -1041,7 +1187,7 @@ footer.foot b{color:var(--gold-deep)}
   var panel=document.getElementById('searchResults');
   var orig=new Map();
   var secs=[].slice.call(document.querySelectorAll('main section[id]')).map(function(s){
-    return {el:s, id:s.id,
+    return {el:s, id:s.id, py:((window._PY||{})[s.id]||''),
       title:(s.querySelector('h3.sec')?s.querySelector('h3.sec').textContent:s.id).trim(),
       text:s.innerText.replace(/\s+/g,' ')};
   });
@@ -1085,12 +1231,12 @@ footer.foot b{color:var(--gold-deep)}
     clearMarks();
     var q=input.value.trim().toLowerCase();
     if(!q){closePanel();return;}
-    var hits=secs.filter(function(s){return s.title.toLowerCase().indexOf(q)!==-1||s.text.toLowerCase().indexOf(q)!==-1;});
+    var hits=secs.filter(function(s){return s.title.toLowerCase().indexOf(q)!==-1||(s.py&&s.py.indexOf(q)!==-1)||s.text.toLowerCase().indexOf(q)!==-1;});
     hits.sort(function(a,b){
       var ta=a.title.toLowerCase().indexOf(q)!==-1?0:1, tb=b.title.toLowerCase().indexOf(q)!==-1?0:1;
       return ta-tb;
     });
-    var html='';
+    var html='<div class="rc">找到 '+hits.length+' 条'+(hits.length>12?'，显示前 12':'')+'</div>';
     hits.slice(0,12).forEach(function(s){
       html+='<div class="r" data-id="'+s.id+'"><div class="rt">'+esc(s.title)+'</div><div class="rs">'+snip(s.text,q)+'</div></div>';
     });
@@ -1137,5 +1283,144 @@ footer.foot b{color:var(--gold-deep)}
   });
 })();
 </script>
+
+<script>
+// v8.1：抽屉导航 / 板块折叠 / 复制链接 / 计算器 / 位次线存储
+(function(){
+  var body=document.body;
+
+  /* ---- D2 侧栏板块折叠 ---- */
+  var nav=document.getElementById('nav');
+  if(nav){
+    var items=[].slice.call(nav.children), cur=null, groups=[];
+    items.forEach(function(el){
+      if(el.classList.contains('grp')){ cur=document.createElement('div'); cur.className='navgrp';
+        nav.insertBefore(cur,el); cur.appendChild(el); groups.push(cur); }
+      else if(cur){ cur.appendChild(el); }
+    });
+  }
+
+  /* ---- D1 移动端抽屉 ---- */
+  var topbar=document.createElement('div'); topbar.id='topbar';
+  topbar.innerHTML='<button class="burger" aria-label="打开目录">☰</button><span class="tt">大学信息差大白话手册</span><span class="vv">2026级 · 电信类</span>';
+  var backdrop=document.createElement('div'); backdrop.id='backdrop';
+  body.appendChild(topbar); body.appendChild(backdrop);
+  var aside=document.querySelector('aside');
+  function closeNav(){ aside.classList.remove('open'); backdrop.classList.remove('show'); }
+  topbar.querySelector('.burger').addEventListener('click',function(){
+    aside.classList.toggle('open'); backdrop.classList.toggle('show', aside.classList.contains('open'));
+  });
+  backdrop.addEventListener('click', closeNav);
+  nav.addEventListener('click', function(e){ if(e.target.closest('a') && matchMedia('(max-width:960px)').matches) closeNav(); });
+  addEventListener('resize',function(){ if(!matchMedia('(max-width:960px)').matches) closeNav(); });
+
+  /* ---- D4 节标题复制链接 ---- */
+  var toast=document.createElement('div'); toast.id='toast'; body.appendChild(toast);
+  var tt;
+  function showToast(m){ toast.textContent=m; toast.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){toast.classList.remove('show')},1600); }
+  function copyText(t,cb){
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(cb,function(){fallback(t,cb);}); }
+    else fallback(t,cb);
+  }
+  function fallback(t,cb){ var ta=document.createElement('textarea'); ta.value=t; ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');cb();}catch(e){} document.body.removeChild(ta); }
+  document.querySelectorAll('main section[id]').forEach(function(sec){
+    var h3=sec.querySelector('h3.sec'); if(!h3) return;
+    var b=document.createElement('button'); b.className='cpy'; b.type='button'; b.title='复制本节链接'; b.textContent='🔗';
+    b.addEventListener('click',function(){
+      var url=location.href.split('#')[0]+'#'+sec.id;
+      copyText(url,function(){ showToast('已复制本节链接，发给同学吧'); });
+    });
+    h3.appendChild(b);
+  });
+
+  /* ---- C1 综测计算器 ---- */
+  var zc=document.getElementById('zcCalc');
+  if(zc){
+    var boxes=[].slice.call(zc.querySelectorAll('#zcA input'));
+    var b1=zc.querySelector('#zcB1'), b2=zc.querySelector('#zcB2'), b3=zc.querySelector('#zcB3'), cf=zc.querySelector('#zcCF');
+    var out=zc.querySelector('#zcOut');
+    function calc(){
+      var A=0; boxes.forEach(function(c){ if(c.checked) A+=+c.dataset.v; });
+      var B=Math.min(50, Math.min(50,+b1.value||0)+Math.min(50,+b2.value||0)+(+b3.value||0));
+      var cfv=+cf.value||0;
+      var total=Math.min(100, A+B-cfv);
+      var coreOK=A>=50;
+      out.innerHTML='<span><b>'+A+'</b><span class="lb">核心 /60</span></span>'
+        +'<span><b>'+B+'</b><span class="lb">额外 /50</span></span>'
+        +(cfv?'<span><b>-'+cfv+'</b><span class="lb">违纪</span></span>':'')
+        +'<span><b>'+total+'</b><span class="lb">总分 /100</span></span>'
+        +'<span class="st '+(coreOK?'good':'bad')+'">'+(coreOK?'✓ 核心过线（≥50），账面合格':'✗ 核心 '+A+' 分未过 50 基本线，B 口袋补不上，先抓规定动作')+'</span>';
+    }
+    zc.addEventListener('input',calc); zc.addEventListener('change',calc); calc();
+  }
+
+  /* ---- C2 GPA/加权双算器 ---- */
+  var gc=document.getElementById('gpaCalc');
+  if(gc){
+    var rows=[].slice.call(gc.querySelectorAll('.gr')).filter(function(r){return r.querySelector('input')&&!r.querySelector('.hd')});
+    var DEMO=[['高等数学','6','92'],['大学英语','3','84'],['大学物理','4','78'],['电路原理','4','85'],['体育','1','90'],['','']];
+    var nameInputs=rows.map(function(r){return r.querySelector('input')});
+    var out2=gc.querySelector('#gpaOut');
+    function gradeToGP(s){
+      if(s>=95)return 4.5; if(s>=90)return 4.0; if(s>=85)return 3.5; if(s>=80)return 3.0;
+      if(s>=75)return 2.5; if(s>=70)return 2.0; if(s>=61)return 1.5; if(s===60)return 1.0; return 0;
+    }
+    function calc2(){
+      var sumC=0,sumG=0,sumW=0,n=0;
+      rows.forEach(function(r){
+        var ins=r.querySelectorAll('input');
+        var c=parseFloat(ins[1].value), s=parseFloat(ins[2].value);
+        if(c>0&&!isNaN(s)&&s>=0&&s<=100){ sumC+=c; sumG+=gradeToGP(s)*c; sumW+=s*c; n++; }
+      });
+      if(!n){ out2.innerHTML='<span class="st bad">填入学分和分数即可实时计算</span>'; return; }
+      var gpa=sumG/sumC, w=sumW/sumC;
+      out2.innerHTML='<span><b>'+gpa.toFixed(2)+'</b><span class="lb">GPA /4.5（学位线≥1.80）</span></span>'
+        +'<span><b>'+w.toFixed(1)+'</b><span class="lb">加权成绩 /100（分流90%）</span></span>'
+        +'<span class="st">同一组分，两条赛道：GPA 有档位保护，加权一分是一分</span>';
+    }
+    gc.addEventListener('input',calc2);
+    gc.querySelector('#gpaReset').addEventListener('click',function(){
+      rows.forEach(function(r,i){
+        var ins=r.querySelectorAll('input');
+        ins[0].value=DEMO[i][0]; ins[1].value=DEMO[i][1]; ins[2].value=DEMO[i][2];
+      });
+      calc2();
+    });
+    calc2();
+  }
+
+  /* ---- C4 位次线登记表（localStorage） ---- */
+  var fsx=document.getElementById('fsxStore');
+  if(fsx){
+    var KEY='usst_fsx_lines';
+    var tds=[].slice.call(fsx.querySelectorAll('td[contenteditable]'));
+    try{
+      var saved=JSON.parse(localStorage.getItem(KEY)||'[]');
+      tds.forEach(function(td,i){ if(saved[i]!=null) td.textContent=saved[i]; });
+    }catch(e){}
+    var timer;
+    function save(){
+      clearTimeout(timer);
+      timer=setTimeout(function(){
+        try{ localStorage.setItem(KEY,JSON.stringify(tds.map(function(td){return td.textContent}))); }catch(e){}
+      },400);
+    }
+    tds.forEach(function(td){ td.addEventListener('input',save); });
+    fsx.querySelector('#fsxAdd').addEventListener('click',function(){
+      var tr=fsx.querySelector('.ranktbl tr');
+      var nr=tr.cloneNode(true);
+      [].forEach.call(nr.querySelectorAll('td'),function(td){ td.textContent=''; });
+      tr.parentElement.appendChild(nr);
+      [].forEach.call(nr.querySelectorAll('td[contenteditable]'),function(td){ td.addEventListener('input',save); tds.push(td); });
+    });
+    fsx.querySelector('#fsxClear').addEventListener('click',function(){
+      if(!confirm('清空全部登记内容？')) return;
+      tds.forEach(function(td){ td.textContent=''; });
+      try{ localStorage.removeItem(KEY); }catch(e){}
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
